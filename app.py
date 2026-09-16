@@ -1,9 +1,7 @@
 import os
 from tabulate import tabulate
-from src.feature.menu.utils.show_menu import show_menu_makanan
-from src.feature.menu.utils.show_menu import show_menu_minuman
-from src.database.db_makanan import db_menu_makanan
-from src.database.db_minuman import db_menu_minuman
+from src.feature.components.utils.show_menu import show_menu_makanan
+from src.feature.components.utils.show_menu import show_menu_minuman
 
 
 def main() :
@@ -25,59 +23,62 @@ def main() :
    menu_kategori = [["1. Lihat Menu"],["2. Lihat rincian pesanan"],["3. Keluar program"]]
    print(tabulate(menu_kategori,tablefmt="fancy_grid"))
    print()
+
    
-   while True :
-
-        input_pilih_menu = int(input("Pilih Opsi : "))
-        
-        try :
+def show_feature() :
+    
+    while True :
+    
+            input_pilih_menu = int(input("Pilih Opsi : "))
             
-            if input_pilih_menu == 1 :
+            try :
                 
-                print()
-                print("1. Menu Makanan")
-                print("2. Menu Minuman")
-                print()
-                
-                try :
-                
-                    input_kategori = int(input("Input no untuk melanjutkan : "))
+                if input_pilih_menu == 1 :
                     
-                    if input_kategori == 1 :
+                    print()
+                    print("1. Menu Makanan")
+                    print("2. Menu Minuman")
+                    print()
+                    
+                    try :
+                    
+                        input_kategori = int(input("Input no untuk melanjutkan : "))
                         
-                        os.system("cls" if os.name=="nt" else "clear")
-                        show_menu_makanan()
-                        break
+                        if input_kategori == 1 :
+                            
+                            os.system("cls" if os.name=="nt" else "clear")
+                            show_menu_makanan()
+                            break
+                            
+                        elif input_kategori == 2 :
+                            
+                            os.system("cls" if os.name=="nt" else "clear")
+                            show_menu_minuman()
+                            break
+    
+                        else :
+                            
+                            print("Input tidak valid. Silahkan input dengan no yang tertera.")
+                            print()
+                            input("Tekan enter untuk melanjutkan...")
+                            continue
+    
+                    except ValueError :
                         
-                    elif input_kategori == 2 :
-                        
-                        os.system("cls" if os.name=="nt" else "clear")
-                        show_menu_minuman()
-                        break
-
-                    else :
-                        
-                        print("Input tidak valid. Silahkan input dengan no yang tertera.")
-                        print()
+                        print("Format input tidak valid. Silahkan gunakan format nomer untuk menginput.")
                         input("Tekan enter untuk melanjutkan...")
-                        continue
-
-                except ValueError :
-                    
-                    print("Format input tidak valid. Silakhkan inpur dengan format yang sesuai.")
-                    input("Tekan enter untuk melanjutkan...")
-                    
-        except ValueError :
-            
-            print("Format input tidak valid. Silakhkan inpur dengan format yang sesuai.")
-            input("Tekan enter untuk melanjutkan...")
-            continue
+                        
+            except ValueError :
                 
-            
-            
+                print("Format input tidak valid. Silakhkan inpur dengan format yang sesuai.")
+                input("Tekan enter untuk melanjutkan...")
+                continue
+                         
 if __name__ == "__main__" :
     
     main()
+    show_feature()
+    
     
         
    
