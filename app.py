@@ -2,6 +2,10 @@ import os
 from tabulate import tabulate
 from src.feature.components.utils.show_menu import show_menu_makanan
 from src.feature.components.utils.show_menu import show_menu_minuman
+from src.feature.payments.order import customer_order_makanan
+from src.feature.payments.order import customer_order_minuman
+from src.resources.db_makanan import db_menu_makanan
+from src.resources.db_minuman import db_menu_minuman
 
 
 def main() :
@@ -48,12 +52,16 @@ def show_feature() :
                             
                             os.system("cls" if os.name=="nt" else "clear")
                             show_menu_makanan()
-                            break
+                            customer_order_makanan(db_menu_makanan())
+                            
+                            main()
+                            continue
                             
                         elif input_kategori == 2 :
                             
                             os.system("cls" if os.name=="nt" else "clear")
                             show_menu_minuman()
+                            customer_order_minuman(db_menu_minuman())
                             break
     
                         else :
