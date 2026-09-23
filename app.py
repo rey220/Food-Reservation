@@ -6,6 +6,8 @@ from src.feature.payments.order import customer_order_makanan
 from src.feature.payments.order import customer_order_minuman
 from src.resources.db_makanan import db_menu_makanan
 from src.resources.db_minuman import db_menu_minuman
+from src.feature.components.views.rincian import show_rincian
+from src.resources.storage import data_pesanan
 
 
 def main() :
@@ -62,8 +64,10 @@ def show_feature() :
                             os.system("cls" if os.name=="nt" else "clear")
                             show_menu_minuman()
                             customer_order_minuman(db_menu_minuman())
-                            break
-    
+                            
+                            main()
+                            continue
+                        
                         else :
                             
                             print("Input tidak valid. Silahkan input dengan no yang tertera.")
@@ -75,6 +79,14 @@ def show_feature() :
                         
                         print("Format input tidak valid. Silahkan gunakan format nomer untuk menginput.")
                         input("Tekan enter untuk melanjutkan...")
+                    
+                elif input_pilih_menu == 2 :
+                    
+                    os.system("cls" if os.name=="nt" else "clear")
+                    show_rincian(data_pesanan)
+                    input("Tekan enter untuk kembali ke menu utama...")
+                    main()
+                    continue
                         
             except ValueError :
                 
